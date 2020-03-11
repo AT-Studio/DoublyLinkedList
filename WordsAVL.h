@@ -38,15 +38,11 @@ private:
 
     int compareWords(std::string str1, std::string str2);
 
-    DoublyLinkedList* getLinesForWordHelper(Node* node, std::string word);
-
     void printHelper(Node** node);
 
 public:
 
     WordsAVL(std::string filePath);
-
-    DoublyLinkedList* getLinesForWord(std::string word);
 
     void print();
 

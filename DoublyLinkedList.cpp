@@ -163,6 +163,29 @@ void* DoublyLinkedList::remove_rear_p() {
     return data;
 }
 
+bool DoublyLinkedList::contains(int data) {
+    Node* runner = front;
+    while (runner != nullptr) {
+        if (reinterpret_cast<std::uintptr_t>(runner->data) == data) return true;
+        runner = runner->next;
+    }
+    return false;
+}
+
+void DoublyLinkedList::print() {
+
+}
+
+DoublyLinkedList* DoublyLinkedList::copy() {
+    DoublyLinkedList* copy = new DoublyLinkedList();
+    Node* runner = front;
+    while (runner != nullptr) {
+        copy->insert_rear(runner->data);
+        runner = runner->next;
+    }
+    return copy;
+}
+
 /**
  * Empties the current list by removed all nodes from the list
  * @return the number of nodes removed

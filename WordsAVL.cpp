@@ -6,13 +6,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 
 WordsAVL::WordsAVL(std::string filePath) {
     root = nullptr;
-    Node **p = &root;
-    // parse file
-
-    std::cout << "Created WordsAVL" << std::endl;
 
     std::ifstream inFile;
     inFile.open(filePath);
@@ -29,16 +26,9 @@ WordsAVL::WordsAVL(std::string filePath) {
                     word.erase(word.find_first_of(c));
                 }
             }
-            std::cout << word << std::endl;
             insert(&root, word, lineNumber);
         }
     }
-//    if (inFile) std::cout << "Opened file" << std::endl;
-
-//    std::string word;
-//    while (inFile >> word) {
-//        std::cout << word << std::endl;
-//    }
 }
 
 void WordsAVL::insert(Node** node, std::string word, int line) {
@@ -50,12 +40,9 @@ void WordsAVL::insert(Node** node, std::string word, int line) {
         (*node)->word = word;
         (*node)->lines = new DoublyLinkedList();
         (*node)->lines->insert_rear(line);
-        std::cout << "Inserted node" << std::endl;
     } else if (compareWords(word, (*node)->word) == 0) {
-        std::cout << "Word was equal" << std::endl;
-        (*node)->lines->insert_rear(line);
+        if (!(*node)->lines->contains(line)) (*node)->lines->insert_rear(line);
     } else if (compareWords(word, (*node)->word) < 0) {
-        std::cout << "Word was less than" << std::endl;
         insert(&(*node)->leftChild, word, line);
         if (height((*node)->leftChild) - height((*node)->rightChild) == 2) {
             if (compareWords(word, (*node)->leftChild->word) < 0) singleRotateRight(node);
@@ -64,11 +51,9 @@ void WordsAVL::insert(Node** node, std::string word, int line) {
             (*node)->height = max(height((*node)->leftChild), height((*node)->rightChild)) + 1;
         }
     } else {
-        std::cout << "Word was greater than" << std::endl;
         insert(&(*node)->rightChild, word, line);
         if (height((*node)->rightChild) - height((*node)->leftChild) == 2) {
             if (compareWords(word, (*node)->rightChild->word) > 0) {
-                std::cout << "Word was greater than" << std::endl;
                 singRotateLeft(node);
             }
             else doubleRotateLeft(node);
@@ -126,8 +111,6 @@ int WordsAVL::max(int a, int b) {
 }
 
 int WordsAVL::compareWords(std::string str1, std::string str2) {
-    std::cout << "comparing " << str1 << " and " << str2 << std::endl;
-//    return str1.compare(str2);
     if (str1 == str2) return 0;
     else if (isupper(str1[0]) && isupper(str2[0])) return str1.compare(str2);
     else if (islower(str1[0]) && islower(str2[0])) return str1.compare(str2);
@@ -143,19 +126,6 @@ int WordsAVL::compareWords(std::string str1, std::string str2) {
     }
 }
 
-DoublyLinkedList* WordsAVL::getLinesForWord(std::string word) {
-    return getLinesForWordHelper(root, word);
-}
-
-DoublyLinkedList* WordsAVL::getLinesForWordHelper(Node *node, std::string word) {
-    if (node == nullptr) return new DoublyLinkedList();
-    if (compareWords(node->word, word) == 0) return root->lines;
-    else if (compareWords(word, node->word) < 0) return getLinesForWordHelper(node->leftChild, word);
-    else {
-        return getLinesForWordHelper(node->rightChild, word);
-    }
-}
-
 void WordsAVL::print() {
     printHelper(&root);
 }
@@ -163,6 +133,15 @@ void WordsAVL::print() {
 void WordsAVL::printHelper(WordsAVL::Node **node) {
     if ((*node) == nullptr) return;
     printHelper(&(*node)->leftChild);
-    std::cout << (*node)->word << std::endl;
+    std::string linesOutput;
+    DoublyLinkedList* linesCopy = (*node)->lines->copy();
+    bool hasAddedLine = false;
+    for (int i = linesCopy->remove_front_i(); i != 0; i = linesCopy->remove_front_i()) {
+        if (hasAddedLine) linesOutput.append(", ");
+        hasAddedLine = true;
+        linesOutput.append(std::to_string(i));
+    }
+    std::cout << std::setw(30) << std::left << (*node)->word << std::setw(1000) << std::left << linesOutput << std::endl;
+    delete linesCopy;
     printHelper(&(*node)->rightChild);
 }

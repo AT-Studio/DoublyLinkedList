@@ -37,9 +37,13 @@ public:
 
     void* remove_rear_p();
 
+    bool contains(int data);
+
     int empty();
 
     void print();
+
+    DoublyLinkedList* copy();
 
 };
 
