@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.cpp
+iostream
+-
+DoublyLinkedList.h
+/home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
+
 /home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
 
 /home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.cpp
@@ -17,10 +23,20 @@ sstream
 -
 iostream
 -
+iomanip
+-
 
 /home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.h
 string
 -
 DoublyLinkedList.h
 /home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
+
+/home/athieler/CLionProjects/DoublyLinkedList/main.cpp
+iostream
+-
+DoublyLinkedList.h
+/home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
+WordsAVL.h
+/home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.h
 
