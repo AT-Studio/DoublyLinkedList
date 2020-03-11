@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
+
+/home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.cpp
+WordsAVL.h
+/home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.h
+fstream
+-
+sstream
+-
+iostream
+-
+
+/home/athieler/CLionProjects/DoublyLinkedList/WordsAVL.h
+string
+-
+DoublyLinkedList.h
+/home/athieler/CLionProjects/DoublyLinkedList/DoublyLinkedList.h
+
