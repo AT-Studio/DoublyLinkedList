@@ -22,27 +22,27 @@ class WordsAVL {
 private:
     Node* root;
 
-    void insert(Node** node, std::string word, int line);
+    static void insert(Node** node, std::string* word, int line);
 
-    void singRotateLeft(Node** node);
+    static void singRotateLeft(Node** node);
 
-    void singleRotateRight(Node** node);
+    static void singleRotateRight(Node** node);
 
-    void doubleRotateLeft(Node** node);
+    static void doubleRotateLeft(Node** node);
 
-    void doubleRotateRight(Node** node);
+    static void doubleRotateRight(Node** node);
 
-    int height(Node* node);
+    static int height(Node* node);
 
-    int max(int a, int b);
+    static int max(int a, int b);
 
-    int compareWords(std::string str1, std::string str2);
+    static int compareWords(std::string str1, std::string str2);
 
-    void printHelper(Node** node);
+    static void printHelper(Node** node);
 
 public:
 
-    WordsAVL(std::string filePath);
+    explicit WordsAVL(std::string* filePath);
 
     void print();
 
