@@ -4,6 +4,7 @@
 
 /**
  * @author Alexander Thieler
+ * @program_number HW 2
  * @description This program accepts a file path and then proceeds to parse the file for words. These words are then inserted
  * into a AVL tree along with the line number in which the word occurred. The order of the words in the tree is
  * alphabetical with lowercase being smaller than upper case lexicographically. The tree's contents can be printed
